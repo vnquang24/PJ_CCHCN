@@ -2,18 +2,16 @@
 import React, { useState } from 'react';
 import { useStoreActions, useStoreState } from '../../store';
 import { View, Text, Button, Image, FlatList, TouchableOpacity } from 'react-native';
-import { goBack, navigate } from '../../services/navigatorService';
-import Modal from 'react-native-modal';
+import { navigate } from '../../services/navigatorService';
+import MediaViewer from '../../components/MediaViewer';
 import styles from './style';
 
 const FormScreen: React.FC = () => {
   const increment = useStoreActions((actions) => actions.counter.increment);
   const count = useStoreState((state) => state.counter.count);
-  const imageUri = useStoreState((state) => state.camera.uri);
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+  const mediaUri = useStoreState((state) => state.camera.uri);
+  const mediaType = useStoreState((state) => state.camera.mediaType);
+  
 
   return (
     <View style={styles.container}>
@@ -32,28 +30,10 @@ const FormScreen: React.FC = () => {
         title="Go to Camera"
         onPress={() => navigate('Camera')}
       />
-      {imageUri ? (
-        <TouchableOpacity onPress={toggleModal}>
-          <Image source={{ uri: imageUri }} style={styles.photo} />
-        </TouchableOpacity>
-      ) : (
-        <Text>No image captured yet</Text>
-      )}
-      <Modal 
-        isVisible={isModalVisible} 
-        onBackdropPress={toggleModal}
-        onSwipeComplete={toggleModal}
-        swipeDirection={['down']}
-        style={styles.modal}
-      >
-        <View style={styles.modalContent}>
-          <Image source={{ uri: imageUri }} style={styles.fullScreenImage} />
-          <TouchableOpacity style={styles.closeButton} onPress={toggleModal}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>   
-      </View>
+      {mediaUri && mediaType && (
+        <MediaViewer uri={mediaUri} type={mediaType} />
+      )}   
+    </View>
   );
 };
 
