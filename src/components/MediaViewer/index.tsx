@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import { View, Image, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Image, TouchableOpacity, Text } from 'react-native';
 import Video from 'react-native-video';
 import Modal from 'react-native-modal';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './style';
 
 interface MediaViewerProps {
   uri: string;
   type: 'photo' | 'video';
+  onDelete: () => void;
 }
 
-const { width, height } = Dimensions.get('window');
-
-const MediaViewer: React.FC<MediaViewerProps> = ({ uri, type }) => {
+const MediaViewer: React.FC<MediaViewerProps> = ({ uri, type, onDelete }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
-    setIsPaused(true); // Pause video when closing modal
+    setIsPaused(true);
   };
 
   const togglePlayPause = () => {
@@ -39,37 +39,44 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ uri, type }) => {
         )}
       </TouchableOpacity>
 
-      <Modal 
-        isVisible={isModalVisible} 
+      <Modal
+        isVisible={isModalVisible}
         onBackdropPress={toggleModal}
         onSwipeComplete={toggleModal}
         swipeDirection={['down']}
         style={styles.modal}
       >
         <View style={styles.modalContent}>
-          {type === 'photo' ? (
-            <Image source={{ uri }} style={styles.fullScreenMedia} resizeMode="contain" />
-          ) : (
-            <TouchableOpacity onPress={togglePlayPause} style={styles.videoContainer}>
-              <Video
-                source={{ uri }}
-                style={styles.fullScreenMedia}
-                paused={isPaused}
-                resizeMode="contain"
-                repeat={true}
-               // controls={true}
-                fullscreenAutorotate={true}
-              />
-              {isPaused && (
-                <View style={styles.playButton}>
-                  <Text style={styles.playButtonText}>▶</Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          )}
           <TouchableOpacity style={styles.closeButton} onPress={toggleModal}>
-            <Text style={styles.closeButtonText}>Close</Text>
+            <Icon name="close" size={30} color="#000" />
           </TouchableOpacity>
+          
+          <View style={styles.mediaContainer}>
+            {type === 'photo' ? (
+              <Image source={{ uri }} style={styles.fullScreenMedia} resizeMode="contain" />
+            ) : (
+              <TouchableOpacity onPress={togglePlayPause} style={styles.videoContainer}>
+                <Video
+                  source={{ uri }}
+                  style={styles.fullScreenMedia}
+                  paused={isPaused}
+                  resizeMode="contain"
+                  repeat={true}
+                />
+                {isPaused && (
+                  <View style={styles.playButton}>
+                     <Icon name="play" size={30} color="#fff" />
+                  </View> 
+                )}
+              </TouchableOpacity>
+            )}
+          </View>
+          
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
+              <Text style={styles.deleteButtonText}>Xóa</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </Modal>
     </View>

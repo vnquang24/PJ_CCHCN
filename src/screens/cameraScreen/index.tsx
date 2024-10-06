@@ -2,16 +2,15 @@ import React from 'react';
 import { View } from 'react-native';
 import { navigate } from '../../services/navigatorService';
 import { useStoreActions } from '../../store';
-import Camera from '../../components/camera'; // Import Camera component
+import Camera from '../../components/camera';
 import styles from './style';
 
 const CameraScreen: React.FC = () => {
-  const setMedia = useStoreActions((actions) => actions.camera.setMedia);
+  const addMedia = useStoreActions((actions) => actions.camera.addMedia);
 
   const handleCapture = (uri: string, type: 'photo' | 'video') => {
-    setMedia({ uri, type });
+    addMedia({ uri, type });
     navigate('Form');
-    console.log(uri, type);
   };
 
   return (

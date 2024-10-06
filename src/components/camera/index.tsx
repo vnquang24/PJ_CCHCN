@@ -48,9 +48,6 @@ const Camera: React.FC<CameraProps> = ({ onCapture }) => {
     }
   }, [captureMode, isRecording, onCapture]);
 
-  const handlePictureTaken = useCallback(() => {
-    console.log('Picture taken');
-  }, []);
 
   const handleRecordingStart = useCallback((event: {
     nativeEvent: {
@@ -107,7 +104,6 @@ const Camera: React.FC<CameraProps> = ({ onCapture }) => {
           buttonPositive: 'Ok',
           buttonNegative: 'Cancel',
         }}
-        onPictureTaken={handlePictureTaken}
         onRecordingStart={handleRecordingStart}
         onRecordingEnd={handleRecordingEnd}
       />

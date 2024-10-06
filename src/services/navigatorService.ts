@@ -20,3 +20,15 @@ export function goBack() {
     navigator.goBack();
   }
 }
+
+export function canGoBack(): boolean {
+  return navigator ? navigator.canGoBack() : false;
+}
+
+export function getCurrentRoute(): string | undefined {
+  if (navigator) {
+    const route = navigator.getCurrentRoute();
+    return route?.name;
+  }
+  return undefined;
+}

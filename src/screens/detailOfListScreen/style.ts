@@ -6,11 +6,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    photo: {
-        width: 100,
-        height: 100,
-        margin: 5,
-      },
 });
 
 export default styles;

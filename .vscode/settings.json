@@ -1,4 +1,9 @@
 {
     "java.compile.nullAnalysis.mode": "disabled",
-    "java.configuration.updateBuildConfiguration": "disabled"
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "files.associations": {
+        "thread": "cpp",
+        "vector": "cpp",
+        "sstream": "cpp"
+    }
 }

@@ -1,38 +1,37 @@
-// src/screens/homeScreen/index.tsx
-import React, { useState } from 'react';
-import { useStoreActions, useStoreState } from '../../store';
-import { View, Text, Button, Image, FlatList, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Button, Text } from 'react-native';
 import { navigate } from '../../services/navigatorService';
-import MediaViewer from '../../components/MediaViewer';
+import { useStoreState, useStoreActions } from '../../store';
+import MediaGallery from '../../components/mediaGalary';
+import ImagePicker from '../../components/imagePicker';
 import styles from './style';
 
 const FormScreen: React.FC = () => {
-  const increment = useStoreActions((actions) => actions.counter.increment);
-  const count = useStoreState((state) => state.counter.count);
-  const mediaUri = useStoreState((state) => state.camera.uri);
-  const mediaType = useStoreState((state) => state.camera.mediaType);
-  
+  const mediaItems = useStoreState((state) => state.camera.mediaItems);
+  const addMedia = useStoreActions((actions) => actions.camera.addMedia);
+
+  const handleAddMedia = () => {
+    navigate('Camera');
+  };
+
+  const handleImageSelected = (uri: string) => {
+    addMedia({ uri, type: 'photo' });
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Form Screen</Text>
-      <Text>{count}</Text>
-      <Button
-        title="Increment"
-        onPress={() => increment(1)}
-      />
-      <Button
-        title="Decrement"
-        onPress={() => increment(-1)}
-      />
-
-      <Button
-        title="Go to Camera"
-        onPress={() => navigate('Camera')}
-      />
-      {mediaUri && mediaType && (
-        <MediaViewer uri={mediaUri} type={mediaType} />
-      )}   
+      {mediaItems.length > 0 ? (
+        <MediaGallery />
+      ) : (
+        <Text>No media items</Text>
+      )}
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Đi đến Máy ảnh"
+          onPress={handleAddMedia}
+        />
+        <ImagePicker onImageSelected={handleImageSelected} />
+      </View>
     </View>
   );
 };

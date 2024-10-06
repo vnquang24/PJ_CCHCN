@@ -1,17 +1,23 @@
 import { Action, action } from 'easy-peasy';
 
+export interface MediaItem {
+  uri: string;
+  type: 'photo' | 'video' | null;
+}
+
 export interface CameraModel {
-  uri : string;
-  mediaType: 'photo' | 'video' | null;
-  setMedia: Action<CameraModel, { uri: string; type: 'photo' | 'video' }>;
+  mediaItems: MediaItem[];
+  addMedia: Action<CameraModel, MediaItem>;
+  removeMedia: Action<CameraModel, number>;
 }
 
 const cameraModel: CameraModel = {
-  uri: '',
-  mediaType: null,
-  setMedia: action((state, payload) => {
-    state.uri = payload.uri;
-    state.mediaType = payload.type;
+  mediaItems: [],
+  addMedia: action((state, payload) => {
+    state.mediaItems.push(payload);
+  }),
+  removeMedia: action((state, payload) => {
+    state.mediaItems.splice(payload, 1);
   }),
 };
 

@@ -1,15 +1,15 @@
 import { createStore, createTypedHooks } from 'easy-peasy';
-import counterModel, { CounterModel } from './models/counterModel';
 import cameraModel, { CameraModel } from './models/cameraModel';
+import loginModel, { LoginModel } from './models/loginModel';
 
 interface StoreModel {
-  counter: CounterModel;
   camera: CameraModel;
+  login: LoginModel;
 }
 
 const store = createStore<StoreModel>({
-  counter: counterModel,
   camera: cameraModel,
+  login: loginModel,
 });
 
 export const { useStoreActions, useStoreState } = createTypedHooks<StoreModel>();

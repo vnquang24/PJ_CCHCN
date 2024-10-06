@@ -6,43 +6,19 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
+        padding: 20,
+        
     },
-    photo: {
-        width: 100,
-        height: 100,
-        margin: 5,
-      },
-    image: {
-        width: 100,
-        height: 100,
-        margin: 5,
-    },
-    modal: {
-        margin: 0,
-        justifyContent: 'flex-end',
-    },
-    modalContent: {
-        backgroundColor: 'white',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        paddingTop: 20,
-        paddingBottom: 20,
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
+        width: '100%',
+        marginTop: 20,
     },
-    fullScreenImage: {
-        width: width,
-        height: height,
-        resizeMode: 'contain',
-    },
-    closeButton: {
-        marginTop: 10,
-        padding: 10,
-        backgroundColor: '#ddd',
-        borderRadius: 5,
-    },
-    closeButtonText: {
-        fontSize: 16,
-        fontWeight: 'bold',
+    button: {
+        flex: 1,
+        marginHorizontal: 5,
     },
 });
 
