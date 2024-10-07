@@ -1,38 +1,64 @@
 import React from 'react';
-import { View, Button, Text } from 'react-native';
-import { navigate } from '../../services/navigatorService';
+import { View, Text, FlatList } from 'react-native';
 import { useStoreState, useStoreActions } from '../../store';
 import MediaGallery from '../../components/mediaGalary';
-import ImagePicker from '../../components/imagePicker';
+import MediaSelector from '../../components/mediaSelector';
+import LocationDisplay from '../../components/locationDisplay';
+import WebViewComponent from '../../components/webView';
 import styles from './style';
 
 const FormScreen: React.FC = () => {
   const mediaItems = useStoreState((state) => state.camera.mediaItems);
   const addMedia = useStoreActions((actions) => actions.camera.addMedia);
 
-  const handleAddMedia = () => {
-    navigate('Camera');
+  const handleMediaSelected = (uri: string, type: 'photo' | 'video') => {
+    addMedia({ uri, type });
   };
 
-  const handleImageSelected = (uri: string) => {
-    addMedia({ uri, type: 'photo' });
+  const renderItem = ({ item }: { item: string }) => {
+    switch (item) {
+      case 'media':
+        return (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Ảnh và Video</Text>
+            <View style={styles.mediaContent}>
+              {mediaItems.length > 0 ? (
+                <MediaGallery />
+              ) : (
+                <Text style={styles.noMediaText}>Chưa có ảnh hoặc video</Text>
+              )}
+              <MediaSelector onMediaSelected={handleMediaSelected} />
+            </View>
+          </View>
+        );
+      case 'location':
+        return (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Vị trí</Text>
+            <LocationDisplay />
+          </View>
+        );
+      case 'webview':
+        return (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>WebView</Text>
+            <View style={styles.webviewContainer}>
+              <WebViewComponent url="https://www.npmjs.com/package/react-native-webview" />
+            </View>
+          </View>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
-    <View style={styles.container}>
-      {mediaItems.length > 0 ? (
-        <MediaGallery />
-      ) : (
-        <Text>No media items</Text>
-      )}
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Đi đến Máy ảnh"
-          onPress={handleAddMedia}
-        />
-        <ImagePicker onImageSelected={handleImageSelected} />
-      </View>
-    </View>
+    <FlatList
+      style={styles.container}
+      data={['media', 'location', 'webview']}
+      renderItem={renderItem}
+      keyExtractor={(item) => item}
+    />
   );
 };
 

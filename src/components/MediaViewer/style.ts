@@ -4,7 +4,7 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   thumbnail: {
-    width: width / 3 - 25,
+    width: width / 3 - 35,
     height: width / 3,
     borderRadius: 10,
     margin: 5,
