@@ -2,11 +2,17 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    padding: 20,
+    backgroundColor: 'white',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
   input: {
     height: 50,
-    borderColor: '#ddd',
+    borderColor: '#e0e0e0',
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 15,
@@ -16,7 +22,7 @@ const styles = StyleSheet.create({
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#ddd',
+    borderColor: '#e0e0e0',
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 15,
@@ -28,23 +34,36 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   eyeIcon: {
-    padding: 15,
+    padding: 10,
   },
   errorText: {
     color: 'red',
     marginBottom: 10,
+  },
+  forgotPassword: {
+    alignSelf: 'flex-end',
+    marginBottom: 20,
+  },
+  forgotPasswordText: {
+    color: '#4CAF50',
     fontSize: 14,
   },
-  submitButton: {
-    backgroundColor: '#3b5998',
+  loginButton: {
+    backgroundColor: '#2196F3',
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',
+    marginBottom: 20,
   },
-  submitButtonText: {
-    color: '#fff',
+  loginButtonText: {
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  termsText: {
+    fontSize: 12,
+    color: 'gray',
+    textAlign: 'center',
   },
 });
 
