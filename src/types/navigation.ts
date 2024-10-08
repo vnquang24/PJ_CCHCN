@@ -8,4 +8,7 @@ export type RootStackParamList = {
   HomeTab: undefined;
   FormTab: undefined;
   SettingTab: undefined;
+  ForgotPassword: undefined;
+  VerificationCode: undefined;
+  ResetPassword: undefined;
 };

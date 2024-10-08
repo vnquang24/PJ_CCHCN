@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
   },
+  forgotPasswordText: {
+    color: '#000',
+    marginTop: 10,
+    textAlign: 'center',
+  },
 });
 
 export default styles;
