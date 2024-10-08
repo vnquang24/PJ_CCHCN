@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BottomTabNavigator from './src/navigation/BottomTabNavigator';
-import AuthStackNavigator from './src/navigation/AuthStackNavigator';
-import { setNavigator } from './src/services/navigatorService';
+import BottomTabNavigator from './src/navigation/bottom-tab-navigator';
+import AuthStackNavigator from './src/navigation/auth-stack-navigator';
+import { setNavigator } from './src/services/navigator-service';
 import { StoreProvider, useStoreState } from 'easy-peasy';
 import store from './src/store/index';
-import { LoginModel } from './src/store/models/loginModel';
-import { useDoubleBackPress } from './src/hooks/doubleBackpress';
+import { LoginModel } from './src/store/models/login-model';
+import { useDoubleBackPress } from './src/hooks/double-backpress';
 
 const Stack = createNativeStackNavigator();
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { navigate } from '../../../services/navigatorService';
+import { navigate } from '../../../services/navigator-service';
 import styles from './style';
 
 interface Disaster {

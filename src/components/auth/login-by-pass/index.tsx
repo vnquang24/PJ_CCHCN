@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Alert, ActivityIndicator } from 'react-native';
 import { useStoreActions } from '../../../store';
 import styles from './style';
-import LoginValidate from '../loginValidate';
-import { login } from '../../../services/authService';
+import LoginValidate from '../login-validate';
+import { login } from '../../../services/auth-service';
 
 const LoginByPass: React.FC = () => {
   const setIsLoggedIn = useStoreActions((actions) => actions.login.setIsLoggedIn);

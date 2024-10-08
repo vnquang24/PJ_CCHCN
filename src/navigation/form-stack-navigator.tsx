@@ -4,8 +4,8 @@ import { RootStackParamList } from '../types/navigation';
 import { getFocusedRouteNameFromRoute, useNavigation, useRoute } from '@react-navigation/native';
 
 // IMPORT SCREEN
-import FormScreen from '../screens/main/form/formScreen';
-import CameraScreen from '../screens/main/form/cameraScreen';
+import FormScreen from '../screens/main/form/form-screen';
+import CameraScreen from '../screens/main/form/camera-screen';
 
 const FormStack = createNativeStackNavigator<RootStackParamList>();
 

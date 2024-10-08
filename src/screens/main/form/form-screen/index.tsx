@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { useStoreState, useStoreActions } from '../../../../store';
-import MediaGallery from '../../../../components/media/mediaGalary';
-import MediaSelector from '../../../../components/media/mediaSelector';
-import LocationDisplay from '../../../../components/common/locationDisplay';
+import MediaGallery from '../../../../components/media/media-galary';
+import MediaSelector from '../../../../components/media/media-selector';
+import LocationDisplay from '../../../../components/common/location-display';
 import WebViewComponent from '../../../../components/common/webView';
 import styles from './style';
 

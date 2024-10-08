@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { navigate } from '../../../../services/navigatorService';
+import { navigate } from '../../../../services/navigator-service';
 import { useStoreActions } from '../../../../store';
 import Camera from '../../../../components/media/camera';
 import styles from './style';

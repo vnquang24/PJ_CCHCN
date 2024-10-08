@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-import { useStoreActions } from '../../store';
+import { useStoreActions } from '../../../store';
 import styles from './style';
 
 const SettingScreen: React.FC = () => {

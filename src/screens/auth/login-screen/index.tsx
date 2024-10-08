@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import styles from './style';
-import LoginByPass from '../../../components/auth/loginByPass';
-import LoginByBio from '../../../components/auth/loginByBio';
-import { navigate } from '../../../services/navigatorService'
+import LoginByPass from '../../../components/auth/login-by-pass';
+import LoginByBio from '../../../components/auth/login-by-bio';
+import { navigate } from '../../../services/navigator-service'
 
 
 const LoginScreen: React.FC = () => {

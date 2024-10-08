@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, Modal, TouchableWithoutFeedback } from 'react-native';
-import { navigate } from '../../../services/navigatorService';
-import ImagePicker from '../imagePicker';
+import { navigate } from '../../../services/navigator-service';
+import ImagePicker from '../image-picker';
 import styles from './style';
 
 interface MediaSelectorProps {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons'; // Import the icon library
-import HomeStackNavigator from './HomeStackNavigator';
-import FormStackNavigator from './FormStackNavigator';
-import SettingStackNavigator from './SettingStackNavigator';
+import HomeStackNavigator from './home-stack-navigator';
+import FormStackNavigator from './form-stack-navigator';
+import SettingStackNavigator from './setting-stack-navigator';
 import { RootStackParamList } from '../types/navigation';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();

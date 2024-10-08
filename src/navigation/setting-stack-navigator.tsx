@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
 
 // IMPORT SCREEN
-import SettingScreen from '../screens/settingScreen';
+import SettingScreen from '../screens/setting/setting-screen';
 
 const SettingsStack = createNativeStackNavigator<RootStackParamList>();
 

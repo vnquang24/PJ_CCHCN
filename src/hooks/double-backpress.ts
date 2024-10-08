@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { BackHandler, ToastAndroid, Platform, Alert } from 'react-native';
-import { canGoBack, goBack } from '../services/navigatorService';
+import { canGoBack, goBack } from '../services/navigator-service';
 
 export const useDoubleBackPress = () => {
   const lastBackPressed = useRef(0);

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, FlatList, TouchableOpacity, Text, ActivityIndicator, RefreshControl } from 'react-native';
 import { useStoreActions, useStoreState } from '../../../../store';
-import { navigate } from '../../../../services/navigatorService';
+import { navigate } from '../../../../services/navigator-service';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './style';
-import { Disaster } from '../../../../store/models/disasterModel';
+import { Disaster } from '../../../../store/models/disaster-model';
 
 const HomeScreen: React.FC = () => {
   const disasters = useStoreState((state) => state.disaster.disasters);
