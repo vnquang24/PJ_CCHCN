@@ -1,10 +1,20 @@
 export const login = async (email: string, password: string): Promise<boolean> => {
+  
   // Giả lập gọi API, luôn trả về true sau 1 giây
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 1000);
-  });
+  if (email === 'admin@example.com' && password === '12345678') {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, 1000);
+    });
+  } else {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(false);
+      }, 1000);
+    });
+  }
+  
 };
 
 export const sendResetPasswordEmail = async (email: string): Promise<boolean> => {

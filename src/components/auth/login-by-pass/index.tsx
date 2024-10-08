@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Alert, ActivityIndicator } from 'react-native';
 import { useStoreActions } from '../../../store';
 import styles from './style';
-import LoginValidate from '../login-validate';
+import LoginForm from '../login-form';
 import { login } from '../../../services/auth-service';
 
 const LoginByPass: React.FC = () => {
@@ -30,7 +30,7 @@ const LoginByPass: React.FC = () => {
       {isLoading ? (
         <ActivityIndicator size="large" color="#0000ff" style={styles.loading} />
       ) : (
-        <LoginValidate onSubmit={handleLogin} />
+        <LoginForm onSubmit={handleLogin} />
       )}
     </View>
   );
