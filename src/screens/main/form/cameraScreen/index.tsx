@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
-import { navigate } from '../../services/navigatorService';
-import { useStoreActions } from '../../store';
-import Camera from '../../components/camera';
+import { navigate } from '../../../../services/navigatorService';
+import { useStoreActions } from '../../../../store';
+import Camera from '../../../../components/media/camera';
 import styles from './style';
 
 const CameraScreen: React.FC = () => {

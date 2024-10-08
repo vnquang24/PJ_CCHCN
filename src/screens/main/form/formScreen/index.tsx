@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { useStoreState, useStoreActions } from '../../store';
-import MediaGallery from '../../components/mediaGalary';
-import MediaSelector from '../../components/mediaSelector';
-import LocationDisplay from '../../components/locationDisplay';
-import WebViewComponent from '../../components/webView';
+import { useStoreState, useStoreActions } from '../../../../store';
+import MediaGallery from '../../../../components/media/mediaGalary';
+import MediaSelector from '../../../../components/media/mediaSelector';
+import LocationDisplay from '../../../../components/common/locationDisplay';
+import WebViewComponent from '../../../../components/common/webView';
 import styles from './style';
 
 const FormScreen: React.FC = () => {

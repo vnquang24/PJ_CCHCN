@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 import styles from './style';
-import LoginByPass from '../../components/loginByPass';
-import LoginByBio from '../../components/loginByBio';
+import LoginByPass from '../../../components/auth/loginByPass';
+import LoginByBio from '../../../components/auth/loginByBio';
 
 const LoginScreen: React.FC = () => {
   return (

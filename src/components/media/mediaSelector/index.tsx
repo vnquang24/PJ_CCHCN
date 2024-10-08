@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, Modal, TouchableWithoutFeedback } from 'react-native';
-import { navigate } from '../../services/navigatorService';
+import { navigate } from '../../../services/navigatorService';
 import ImagePicker from '../imagePicker';
 import styles from './style';
 

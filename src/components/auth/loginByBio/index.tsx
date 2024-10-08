@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Alert, ActivityIndicator } from 'react-native';
-import { useStoreActions } from '../../store';
+import { useStoreActions } from '../../../store';
 import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './style';

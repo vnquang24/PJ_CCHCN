@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import { useStoreState, useStoreActions } from '../../store';
+import { useStoreState, useStoreActions } from '../../../store';
 import MediaViewer from '../MediaViewer';
 import styles from './style';
-import { MediaItem } from '../../store/models/cameraModel';
+import { MediaItem } from '../../../store/models/cameraModel';
 
 const MediaGallery: React.FC = () => {
   const mediaItems = useStoreState((state) => state.camera.mediaItems);

@@ -1,7 +1,7 @@
 export type RootStackParamList = {
   Login: undefined;
   Home: undefined;
-  DetailOfList: undefined;
+  DetailOfList: { disasterId: number };
   Form: undefined;
   Setting: undefined;
   Camera: undefined;
