@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { Image } from '../../../../store/models/disaster-models';
 import styles from './style';
+
 interface MediaFormProps {
     onSubmit: (mediaInfo: Omit<Image, 'id'>) => void;
     mediaUri: string;
@@ -9,11 +10,13 @@ interface MediaFormProps {
 }
 
 const MediaForm: React.FC<MediaFormProps> = ({ onSubmit, mediaUri, mediaType }) => {
+    console.log("MediaForm rendered with:", { mediaUri, mediaType });
     const [des, setDes] = useState('');
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
 
     const handleSubmit = () => {
+        console.log('Submitting form with:', { des, lat, lng });
         onSubmit({
             uri: mediaUri,
             des,
@@ -23,7 +26,10 @@ const MediaForm: React.FC<MediaFormProps> = ({ onSubmit, mediaUri, mediaType }) 
     };
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.container}
+        >
             <TextInput
                 style={styles.input}
                 placeholder="Mô tả"
@@ -44,8 +50,10 @@ const MediaForm: React.FC<MediaFormProps> = ({ onSubmit, mediaUri, mediaType }) 
                 onChangeText={setLng}
                 keyboardType="numeric"
             />
-            <Button title="Lưu" onPress={handleSubmit} />
-        </View>
+            <View style={styles.buttonContainer}>
+                <Button title="Lưu" onPress={handleSubmit} />
+            </View>
+        </KeyboardAvoidingView>
     );
 };
 

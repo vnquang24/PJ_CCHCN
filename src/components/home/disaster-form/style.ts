@@ -13,11 +13,31 @@ const styles = StyleSheet.create({
     elevation: 3,
     flex: 1,
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  actionButton: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   saveButton: {
-    position: 'absolute',
-    top: 16,
-    right: 16,
-    zIndex: 1,
+    backgroundColor: '#007AFF',
+  },
+  cancelButton: {
+    backgroundColor: '#FF3B30',
+  },
+  editButton: {
+    backgroundColor: '#34C759',
+  },
+  actionButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   section: {
     marginBottom: 20,
@@ -44,42 +64,9 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderRadius: 4,
   },
-  imageItem: {
-    marginBottom: 10,
-    padding: 10,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 4,
-  },
   readOnlyText: {
     fontSize: 16,
     color: '#333',
-  },
-  editButton: {
-    position: 'absolute',
-    top: 16,
-    right: 16,
-    zIndex: 1,
-  },
-  addMediaButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  addMediaButtonText: {
-    marginLeft: 10,
-    color: '#007AFF',
-  },
-  mediaItem: {
-    marginBottom: 10,
-  },
-  mediaPreview: {
-    width: '100%',
-    height: 200,
-    resizeMode: 'cover',
-    marginBottom: 5,
   },
 });
 
