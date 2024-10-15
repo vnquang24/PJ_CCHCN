@@ -4,10 +4,10 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   thumbnail: {
-    width: width / 3 - 35,
+    width: width / 3  - 30,
     height: width / 3,
-    borderRadius: 10,
-    margin: 5,
+  //  borderRadius: 10,
+    //margin: 5,
   },
   modal: {
     margin: 0,

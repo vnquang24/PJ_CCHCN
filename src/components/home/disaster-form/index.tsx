@@ -1,11 +1,14 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, FlatList, Modal, KeyboardAvoidingView, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 import styles from './style';
 import MediaSelector from '../../common/media/media-selector';
 import MediaGallery from '../../common/media/media-gallery';
 import { disasterTypes } from '../../../constants/disaster-types';
+import Camera from '../../../components/common/media/camera';
+import MediaForm from '../../common/media/media-form';
+import { Image } from '../../../store/models/disaster-models';
 
 interface DisasterFormProps {
   disasterId: number;
@@ -19,6 +22,10 @@ const DisasterForm: React.FC<DisasterFormProps> = ({ disasterId, isEditing, onTo
   );
   const updateDisaster = useStoreActions((actions: any) => actions.disaster.updateDisaster);
   const addImage = useStoreActions((actions: any) => actions.disaster.addImage);
+
+  const [showCamera, setShowCamera] = useState(false);
+  const [showMediaForm, setShowMediaForm] = useState(false);
+  const [capturedMedia, setCapturedMedia] = useState<{ uri: string; type: 'photo' | 'video' } | null>(null);
 
   const handleSave = () => {
     updateDisaster(disaster);
@@ -38,6 +45,17 @@ const DisasterForm: React.FC<DisasterFormProps> = ({ disasterId, isEditing, onTo
       coordinates,
     };
     addImage({ disasterId, image: newImage });
+  };
+
+  const handleCameraCapture = (uri: string, type: 'photo' | 'video') => {
+    setShowCamera(false);
+    setCapturedMedia({ uri, type });
+    setShowMediaForm(true);
+  };
+
+  const handleMediaFormSubmit = (mediaInfo: Omit<Image, 'id'>) => {
+    setShowMediaForm(false);
+    handleMediaSelected(mediaInfo.uri, mediaInfo.type, mediaInfo.des, mediaInfo.coordinates);
   };
 
   const renderField = (label: string, value: string, onChangeText?: (text: string) => void, multiline: boolean = false) => (
@@ -83,7 +101,13 @@ const DisasterForm: React.FC<DisasterFormProps> = ({ disasterId, isEditing, onTo
         <View>
           <Text style={styles.sectionTitle}>Hình ảnh và Video</Text>
           {isEditing && (
-            <MediaSelector onMediaSelected={handleMediaSelected} />
+            <MediaSelector 
+              onCameraPress={() => setShowCamera(true)}
+              onMediaSelected={(uri, type) => {
+                setCapturedMedia({ uri, type });
+                setShowMediaForm(true);
+              }}
+            />
           )}
           <MediaGallery
             isEditing={isEditing}
@@ -108,8 +132,8 @@ const DisasterForm: React.FC<DisasterFormProps> = ({ disasterId, isEditing, onTo
     { label: 'Tọa độ', value: `${disaster.coordinates.lat}, ${disaster.coordinates.lng}`, key: 'coordinates' },
     { label: 'Mức độ thiệt hại', value: disaster.damageLevel, key: 'damageLevel' },
     { label: 'Thời gian', value: new Date(disaster.timestamp).toLocaleDateString('vi-VN'), key: 'timestamp' },
-    {}, // Placeholder for disaster type
-    {}, // Placeholder for media gallery
+    { label: 'Loại thảm họa', value: disaster.type, key: 'type' },
+    { label: 'Hình ảnh và Video', value: '', key: 'images' },
   ];
 
   return (
@@ -144,6 +168,21 @@ const DisasterForm: React.FC<DisasterFormProps> = ({ disasterId, isEditing, onTo
           </TouchableOpacity>
         )}
       </View>
+      
+      <Modal visible={showCamera} animationType="slide">
+        <Camera onCapture={handleCameraCapture} />
+      </Modal>
+      <Modal visible={showMediaForm} animationType="slide" onRequestClose={() => setShowMediaForm(false)}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
+          {capturedMedia && (
+            <MediaForm
+              onSubmit={handleMediaFormSubmit}
+              mediaUri={capturedMedia.uri}
+              mediaType={capturedMedia.type}
+            />
+          )}
+        </KeyboardAvoidingView>
+      </Modal>
     </View>
   );
 };
